@@ -31,11 +31,12 @@ public class MenuServicio {
             System.out.println("==================================================");
             System.out.println("1. Registrar recepción de orden de trabajo");
             System.out.println("2. Listar órdenes de trabajo activas");
-            System.out.println("3. Listar todas las órdenes de trabajo");
-            System.out.println("4. Cargar repuestos consumidos a una orden");
-            System.out.println("5. Marcar orden como finalizada");
-            System.out.println("6. Cambiar estado de una orden");
-            System.out.println("7. Ver detalle y liquidación de costos de orden");
+            System.out.println("3. Listar pendiente por prioridad");
+            System.out.println("4. Listar todas las órdenes de trabajo");
+            System.out.println("5. Cargar repuestos consumidos a una orden");
+            System.out.println("6. Marcar orden como finalizada");
+            System.out.println("7. Cambiar estado de una orden");
+            System.out.println("8. Ver detalle y liquidación de costos de orden");
             System.out.println("0. Volver al menú principal");
             System.out.println("==================================================");
             System.out.print("Seleccione una opción: ");
@@ -51,11 +52,12 @@ public class MenuServicio {
             switch (opcion) {
                 case 1 -> ejecutarRecepcionOrden();
                 case 2 -> ejecutarListarOrdenesActivas();
-                case 3 -> ejecutarListarTodasOrdenes();
-                case 4 -> ejecutarCargarRepuestos();
-                case 5 -> ejecutarMarcarFinalizada();
-                case 6 -> ejecutarCambiarEstado();
-                case 7 -> ejecutarVerDetalle();
+                case 3 -> ejecutarpendienteporprioridad();
+                case 4 -> ejecutarListarTodasOrdenes();
+                case 5 -> ejecutarCargarRepuestos();
+                case 6 -> ejecutarMarcarFinalizada();
+                case 7 -> ejecutarCambiarEstado();
+                case 8 -> ejecutarVerDetalle();
                 case 0 -> System.out.println("Regresando al menú principal...");
                 default -> System.out.println("[Error] Opción no válida. Intente nuevamente.");
             }
@@ -111,6 +113,11 @@ public class MenuServicio {
         System.out.println("\n--- ÓRDENES DE TRABAJO ACTIVAS ---");
         List<Servicio> ordenes = servicioControlador.listarOrdenesActivas();
         mostrarTablaOrdenes(ordenes);
+    }
+
+    private void ejecutarpendienteporprioridad(){
+        System.out.println("\n--- órdenes de trabajo por prioridad ---");
+
     }
 
     private void ejecutarListarTodasOrdenes() {

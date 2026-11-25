@@ -16,6 +16,8 @@ public interface ServicioDao {
 
     List<Servicio> listarPorEstado(int estadoId);
 
+    List<Servicio> Listarpendienteporprioridad();
+
     void actualizarEstado(int servicioId, int nuevoEstadoId);
 
     void agregarRepuestoAServicio(ServicioRepuesto item);
@@ -25,4 +27,5 @@ public interface ServicioDao {
     void guardarConRepuestos(Servicio servicio, List<ServicioRepuesto> repuestos);
 
     void actualizar(Servicio servicio);
+
 }
