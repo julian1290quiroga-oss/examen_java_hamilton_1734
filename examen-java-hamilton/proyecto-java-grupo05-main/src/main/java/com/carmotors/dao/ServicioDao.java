@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public interface ServicioDao {
 
+    List<Servicio> listarPendientesPorPrioridad();
+
     void guardar(Servicio servicio);
 
     Optional<Servicio> buscarPorId(int id);
@@ -15,8 +17,6 @@ public interface ServicioDao {
     List<Servicio> listarTodos();
 
     List<Servicio> listarPorEstado(int estadoId);
-
-    List<Servicio> Listarpendienteporprioridad();
 
     void actualizarEstado(int servicioId, int nuevoEstadoId);
 
@@ -27,5 +27,6 @@ public interface ServicioDao {
     void guardarConRepuestos(Servicio servicio, List<ServicioRepuesto> repuestos);
 
     void actualizar(Servicio servicio);
+
 
 }

@@ -30,11 +30,7 @@ class ServicioControladorTest {
 
     private ServicioControlador servicioControlador;
 
-    @BeforeEach
-    void setUp() {
-        TallerServicio tallerServicio = new TallerServicio(servicioDao, inventarioService);
-        servicioControlador = new ServicioControlador(tallerServicio);
-    }
+
 
     @Test
     @DisplayName("Controlador registra orden exitosamente")

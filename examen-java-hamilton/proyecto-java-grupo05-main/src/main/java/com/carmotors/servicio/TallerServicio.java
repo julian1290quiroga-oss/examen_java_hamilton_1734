@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class TallerServicio {
+public abstract class TallerServicio {
 
     private final ServicioDao servicioDao;
     private final InventarioServiceContract inventarioService;
@@ -17,6 +17,10 @@ public class TallerServicio {
     public TallerServicio(ServicioDao servicioDao, InventarioServiceContract inventarioService) {
         this.servicioDao = servicioDao;
         this.inventarioService = inventarioService;
+    }
+
+    public abstract List<Servicio> listarPendientesPorPrioridad();{
+
     }
 
     public TallerServicio(ServicioDao servicioDao) {

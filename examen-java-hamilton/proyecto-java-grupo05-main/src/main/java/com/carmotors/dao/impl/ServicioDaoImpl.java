@@ -6,12 +6,42 @@ import com.carmotors.modelo.Servicio;
 import com.carmotors.modelo.ServicioRepuesto;
 
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class ServicioDaoImpl implements ServicioDao {
+
+    @Override
+    public List<Servicio> listarPendientesPorPrioridad() {
+        String sql = """
+            SELECT s.id, s.vehiculo_id, s.mantenimiento_tipo_id, s.fecha_recepcion,
+                   s.fecha_entrega, s.descripcion_problema, s.costo_mano_obra, s.estado_id
+            FROM servicios s
+            WHERE s.estado_id IN (1, 2, 3)
+            ORDER BY
+                CASE
+                    WHEN UPPER(TRIM(s.descripcion_problema)) LIKE '[URGENTE]%' THEN 0
+                    ELSE 1
+                END ASC,
+                s.fecha_recepcion ASC
+            """;
+
+        List<Servicio> pendientes = new ArrayList<>();
+
+        try (Connection conn = ConexionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                pendientes.add(mapearServicio(rs));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al listar los servicios pendientes por prioridad: " + e.getMessage(), e);
+        }
+
+        return pendientes;
+    }
 
     @Override
     public void guardar(Servicio servicio) {
@@ -104,6 +134,8 @@ public class ServicioDaoImpl implements ServicioDao {
         }
         return servicios;
     }
+
+
 
     @Override
     public void actualizarEstado(int servicioId, int nuevoEstadoId) {

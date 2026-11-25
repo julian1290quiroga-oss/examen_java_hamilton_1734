@@ -31,7 +31,7 @@ public class MenuServicio {
             System.out.println("==================================================");
             System.out.println("1. Registrar recepción de orden de trabajo");
             System.out.println("2. Listar órdenes de trabajo activas");
-            System.out.println("3. Listar pendiente por prioridad");
+            System.out.println("3. Listar Pendiente por prioridad");
             System.out.println("4. Listar todas las órdenes de trabajo");
             System.out.println("5. Cargar repuestos consumidos a una orden");
             System.out.println("6. Marcar orden como finalizada");
@@ -52,7 +52,7 @@ public class MenuServicio {
             switch (opcion) {
                 case 1 -> ejecutarRecepcionOrden();
                 case 2 -> ejecutarListarOrdenesActivas();
-                case 3 -> ejecutarpendienteporprioridad();
+                case 3 -> listarPendientesPorPrioridad();
                 case 4 -> ejecutarListarTodasOrdenes();
                 case 5 -> ejecutarCargarRepuestos();
                 case 6 -> ejecutarMarcarFinalizada();
@@ -115,9 +115,9 @@ public class MenuServicio {
         mostrarTablaOrdenes(ordenes);
     }
 
-    private void ejecutarpendienteporprioridad(){
+    private void listarPendientesPorPrioridad(){
         System.out.println("\n--- órdenes de trabajo por prioridad ---");
-
+        List<Servicio> ordenes = servicioControlador.listarOrdenesActivas();
     }
 
     private void ejecutarListarTodasOrdenes() {
