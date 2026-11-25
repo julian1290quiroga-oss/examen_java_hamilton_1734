@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public abstract class TallerServicio {
+public class TallerServicio {
 
     private final ServicioDao servicioDao;
     private final InventarioServiceContract inventarioService;
@@ -17,11 +17,16 @@ public abstract class TallerServicio {
     public TallerServicio(ServicioDao servicioDao, InventarioServiceContract inventarioService) {
         this.servicioDao = servicioDao;
         this.inventarioService = inventarioService;
+    };
+
+    public List<Servicio> ListarPendientesPorPrioridad() {
+        return servicioDao.listarPendientesPorPrioridad();
     }
 
-    public abstract List<Servicio> listarPendientesPorPrioridad();{
-
+    public List<Servicio> obtenerServiciosPendientesPorPrioridad() {
+        return servicioDao.listarPendientesPorPrioridad();
     }
+
 
     public TallerServicio(ServicioDao servicioDao) {
         this(servicioDao, new InventarioServiceMock());
